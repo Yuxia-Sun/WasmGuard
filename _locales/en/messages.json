@@ -1,0 +1,8 @@
+{
+    "pluginDesc": {
+      "message": "Detecting whether a web page contains Wasm malware using WasmGuard"
+    },
+    "name": {
+      "message": "WebChecker"
+    }
+  }

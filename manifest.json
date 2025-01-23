@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "WebChecker",
+  "default_locale": "en",
+  "version": "1.0.0",
+  "description": "Detecting whether a web page contains Wasm malware using WasmGuard",
+  "icons": {
+    "16": "img/logo.png",
+    "48": "img/logo.png",
+    "128": "img/logo.png"
+  },
+  "action": {
+    "default_title": "wasm-guard-tool",
+    "default_icon": "img/logo.png",
+    "default_popup": "popup/dist/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "bg.js",
+        "contentScript.js"
+      ],
+      "run_at": "document_end",
+      "css": [
+        "myStyle.css",
+        "panel/dist/css/chunk-vendors.93369037.css",
+        "panel/dist/css/panel.css"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "panel/dist/js/app.0ad1a673.js",
+        "panel/dist/js/chunk-vendors.aa3dac99.js",
+        "script/init.js",
+        "script/wrapper.js",
+        "panel/dist/fonts/element-icons.f1a45d74.ttf",
+        "panel/dist/fonts/element-icons.ff18efd1.woff"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "downloads"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
