@@ -27,7 +27,7 @@ WebChecker works according to the following process:
 When launching WebChecker, users are greeted with a popup that introduces the tool and its quick-access features.
 
 <div align="center">
-  <img src="img/screenshot_popup.png" width=""><br>
+  <img src="img/plus.PNG" width=""><br>
 </div>
 
 When a webpage is analyzed, users can call up WebChecker's panel, which lists detected Wasm files, their domain, filename, and detailed results indicating whether the file is benign or malicious.
