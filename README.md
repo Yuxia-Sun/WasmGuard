@@ -4,6 +4,9 @@
 In this paper, we propose WasmGuard,  a robust malware detection framework tailored for Wasm. WasmGuard employs FGSM-based adversarial training with prior-based initialization for perturbation bytes in customized sections, coupled with a novel adversarial contrastive learning objective. If you find this paper or this repo is useful for you, we would like to have you cite our paper as follows (ACM Reference Format).
 
 > Yuxia Sun, Huihong Chen, Zhixiao Fu, Wenjian Lv, Zitao Liu, and Haolin Liu.2025. WasmGuard: Enhancing Web Security through Robust Raw-Binary Detection of WebAssembly Malware. In Proceedings of the ACM Web Conference 2025 (WWW ’25), April 28–May 2, 2025, Sydney, NSW, Australia. ACM, New York, NY, USA, 9 pages. https://doi.org/10.1145/3696410.3714696
+> 
+## WasmMal：A Dataset of Wasm malware
+Please access WasmMal-15K at  https://github.com/Yuxia-Sun/WasmMal
 
 ## WebChecker——A WasmGuard-based Detector Plugin
 
