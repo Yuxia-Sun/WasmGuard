@@ -1,0 +1,114 @@
+exp_name: 'Malconv'
+
+### Data path
+# old dataset
+# train_data_path: 'B:/RWAD/data_old/train'                 # Training data
+# train_pert_path: 'B:/RWAD/data_old/train_pert'           # add pert infomation use BREWasm
+# train_label_path: 'B:/RWAD/data_old/train.csv'            # Training label
+# valid_data_path: 'B:/RWAD/data_old/test'
+# test_pert_path: 'B:/RWAD/data_old/test_pert'           # add pert infomation use BREWasm
+# valid_label_path: 'B:/RWAD/data_old/test.csv'
+
+# autodl服务器使用的数据集路径
+# train_data_path: '/root/autodl-tmp/data/train/'                 # Training data
+# train_pert_path: '/root/autodl-tmp/data/train'                # add pert infomation use BREWasm
+# #train_pert_path: '/root/autodl-tmp/data/train_pert'           # add pert infomation use BREWasm
+# train_label_path: '/root/autodl-tmp/data/train.csv'            # Training label
+# valid_data_path: '/root/autodl-tmp/data/test/'                # Testset Data
+# test_pert_path: '/root/autodl-tmp/data/test'                  # add pert infomation use BREWasm
+# valid_label_path: '/root/autodl-tmp/data/test.csv'             # Testset Label
+# temp_data_path: '/root/autodl-tmp/data/temp/'
+
+# 本地服务器使用的数据集路径
+# train_data_path: 'B:/RWAD/data/train/'                # Training data
+# train_pert_path: 'B:/RWAD/data/train'                 # add pert infomation use BREWasm
+# train_label_path: 'B:/RWAD/data/train.csv'            # Training label
+# valid_data_path: 'B:/RWAD/data/test/'                 # Testset Data
+# test_pert_path: 'B:/RWAD/data/test'                   # add pert infomation use BREWasm
+# valid_label_path: 'B:/RWAD/data/test.csv'
+# temp_data_path: 'B:/RWAD/data/temp/'
+
+# valid_data_path: 'B:/RWAD/data/large_test'
+# test_pert_path: 'B:/RWAD/data/test_pert'           # add pert infomation use BREWasm
+# valid_label_path: 'B:/RWAD/data/large.csv'
+
+### REWA dataset
+train_data_path:  '/home/REWA/data/train/'                 # Training data
+train_pert_path:  '/home/REWA/data/train_pert/'           # add pert infomation use BREWasm
+train_label_path: '/home/REWA/data/train.csv'            # Training label
+valid_data_path:  '/home/REWA/data/test/'
+test_pert_path:   '/home/REWA/data/test_pert/'              # add pert infomation use BREWasm
+valid_label_path: '/home/REWA/data/test.csv'
+temp_data_path:   '/home/REWA/data/temp/'
+
+### Used in train_malconvGCT.py
+log_path: './new_logs/checkpoints/log.txt'
+pred_dir: 'pred/'
+checkpoint_path: './logs/checkpoints/train_RARA_old_dataset_bz24_0.1_AC_0.5_AD/' #
+train_malconv_start_epoch: 3
+now_epochs: 0 #
+reload_GCT: False
+
+### malconv
+cpu_num: 10                # Number of cores to use for data loader
+out_size: 2              # Number of classes (2)
+learning_rate: 0.0001
+max_epoches: 30           # Number of epoch to train
+batch_size: 16           #
+validate_batch_size: 4
+min_file_size: 1000       # min_file_size
+window_size: 512          # Kernel size & stride for Malconv (defualt : 500)
+seed: 455616
+# model_path: 'checkpoints/model_malconv 0.9469 250000.pth'
+
+### attack
+eps: 0.6   # attack eps
+payload_size: 100000
+padding_rate: 0.03  # file length rate
+extension_amount: 1024  # shift size
+loop_num: 30 # 70
+pert_rate: 0.2
+attack_log_path: './new_logs/checkpoints/1759/attack_log.txt'
+need_attack_path: './data/1759/test_upx/' # The model to be attacked
+generated_advsample_path: './checkpoints/1759/joint/simMal_encoder_joint_superconloss_vat/adv_100000_epoch199_acc0.923/'
+attack_model_path: './checkpoints/1759/joint/simMal_encoder_joint_superconloss_vat/simmal_join_epoch=199_val_acc=0.923_normal.ckpt'
+print_progress_label: False # print attack progress?
+save_exe: True # save adv sample?
+
+
+### simMal
+# simMal_log_path: 'checkpoints/5133/simMal_joint_superconloss_log.txt'
+simMal_eps: 0.6
+simMal_learning_rate: 0.0001
+projection_dim: 128
+simMal_batch_size: 16
+temperature: 0.6 # simCLR
+simmal_attack_payload_size: 100000
+sim_total_epoch: 100 # How many epochs to train this time
+simMal_path: './new_logs/checkpoints/1759/rega_joint_RARA_random_none_apex_20240103/'
+simMal_start_epoch: 23  # Start training from the start_epoch, for the convenience of reloading model
+iterations: 2
+reload: False
+
+### SAT
+
+interval: 99 # alternate use of random initialization and prior initialization
+sat_t: 2   # attack frequency
+
+### linear evaluation
+downstream_malconv_batch_size: 16
+downstream_batch_size: 1024
+downstream_epoch: 500
+downstream_out_size: 15 # class num in downstream
+downstream_checkpoint_epoch: 0  # choose which checkpoint epoch to start training downstream task
+downstream_checkpoint_path: 'checkpoints/1759/joint/simMal_encoder/malconv'
+
+
+### robustness evaluation
+robustness_eval_batch_size: 1
+robustness_evalutaion_model_path: './checkpoints/5529/pure_malconv/model_malconv 0.93.pth'
+linear_evalutaion_model_path:  './checkpoints/1759/joint/simMal_encoder_joint_superconloss_vat/simmal_join_epoch=199_val_acc=0.923_normal.ckpt'
+# adv_data_path: './checkpoints/5133/joint/simMal_encoder_joint_superconloss_vat/adv_100000_epoch199_acc0.923/'
+# adv_data_path: './checkpoints/1759/adv_training_malconv/adv_100000_epoch199_acc0.923/'
+adv_data_path: './data/5133/85-15-2/test_upx/'
+# adv_data_path: './checkpoints/1759/pure_malconv/adv_sample_0.93/'
