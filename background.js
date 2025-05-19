@@ -1,4 +1,4 @@
-const detect_server = "http://8.138.28.248:8201/upload"
+const detect_server = "http://8.138.222.184:8201/upload"
 const result_map = new Map(); // 存储后端返回结果
 const wasm_map = new Map(); // 存储注入脚本发送的wasm
 const host_set = new Set(); // 检测有多少个源
